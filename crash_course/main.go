@@ -30,5 +30,7 @@ func main() {
     statement()
     fmt.Println(message)
     fmt.Println(result)
+    slices()
+    maps()
 
 }
