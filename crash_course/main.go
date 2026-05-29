@@ -32,5 +32,6 @@ func main() {
     fmt.Println(result)
     slices()
     maps()
+    combined()
 
 }
