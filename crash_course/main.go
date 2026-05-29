@@ -34,5 +34,6 @@ func main() {
     // maps()
     // combined()
     result()
+    StudentSlice()
 
 }
