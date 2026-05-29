@@ -35,5 +35,6 @@ func main() {
     // combined()
     result()
     StudentSlice()
+    PrintLecturer()
 
 }
