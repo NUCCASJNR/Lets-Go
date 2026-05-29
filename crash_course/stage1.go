@@ -37,6 +37,7 @@ func mapUser() {
 }
 
 func combined() {
+	
 	stageOne("Al-Areef", 18, true)
 	printNumbers()
 	sliceDemo()

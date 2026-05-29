@@ -23,15 +23,16 @@ func add(a int, b int) int {
 }
 
 func main() {
-    message := greet("Areef")
-    result := add(9, 5)
-    new()
-    printDetails()
-    statement()
-    fmt.Println(message)
-    fmt.Println(result)
-    slices()
-    maps()
-    combined()
+    // message := greet("Areef")
+    // result := add(9, 5)
+    // new()
+    // printDetails()
+    // statement()
+    // fmt.Println(message)
+    // fmt.Println(result)
+    // slices()
+    // maps()
+    // combined()
+    result()
 
 }
