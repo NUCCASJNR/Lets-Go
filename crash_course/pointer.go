@@ -5,7 +5,7 @@ import "fmt"
 type NewStudent struct {
 	Name         string
 	MatricNumber int
-	Level        string
+	Level        int
 	Department   string
 }
 
@@ -23,14 +23,16 @@ func (s *NewStudent) updateDepartment(newDept string) {
 	s.Department = newDept
 }
 
+// func (s *NewStudent) Promote()
+
 func NewPrint() {
 	s := NewStudent{
 		Name:         "Areef",
 		MatricNumber: 9,
-		Level:        "100level",
+		Level:        100,
 		Department:   "Welding",
 	}
-
+	// s.Promote()
 	s.printInfo()
 
 	s.updateDepartment("Mechanical Engineering")
