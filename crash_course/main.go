@@ -38,5 +38,6 @@ func main() {
     // PrintLecturer()
     // fmt.Println("=== NEW MAIN RUNNING ===")
     // NewPrint()
-    PrintStudentManagement()
+    // PrintStudentManagement()
+    PrintStudentApi()
 }
