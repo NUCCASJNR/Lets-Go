@@ -30,11 +30,12 @@ func main() {
     // statement()
     // fmt.Println(message)
     // fmt.Println(result)
-    // slices()
-    // maps()
-    // combined()
+    slices()
+    maps()
+    combined()
     result()
     StudentSlice()
     PrintLecturer()
-
+    fmt.Println("=== NEW MAIN RUNNING ===")
+    NewPrint()
 }
