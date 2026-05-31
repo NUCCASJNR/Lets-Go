@@ -39,5 +39,7 @@ func main() {
     // fmt.Println("=== NEW MAIN RUNNING ===")
     // NewPrint()
     // PrintStudentManagement()
-    PrintStudentApi()
+    // PrintStudentApi()
+    initDB()
+    startServer()
 }
