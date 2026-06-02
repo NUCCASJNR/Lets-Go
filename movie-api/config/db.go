@@ -2,27 +2,22 @@ package config
 
 import (
 	"fmt"
-	"database/sql"
 
-	_ "github.com/go-sql-driver/mysql"
+	"gorm.io/driver/mysql"
+	"gorm.io/gorm"
 )
 
-var DB *sql.DB
+var DB *gorm.DB
 
 func ConnectDB() {
-	var err error
+	dsn := "m_user:M_pwd123@@tcp(127.0.0.1:3306)/movies_db?charset=utf8mb4&parseTime=True&loc=Local"
 
-	DB, err = sql.Open("mysql", "m_user:M_pwd123@tcp(127.0.0.1:3306)/movies_db")
+	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
-		fmt.Println("DB error:", err)
+		fmt.Println("DB connection failed:", err)
 		return
 	}
 
-	err = DB.Ping()
-	if err != nil {
-		fmt.Println("DB not reachable:", err)
-		return
-	}
-
-	fmt.Println("Database connected ✅")
+	DB = db
+	fmt.Println("Database connected with GORM ✅")
 }
