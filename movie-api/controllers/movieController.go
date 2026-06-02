@@ -63,3 +63,76 @@ func GetMovieByID(c *gin.Context) {
 		"data": movie,
 	})
 }
+
+func DeleteMovieByID(c *gin.Context) {
+	id := c.Param("id")
+
+	movieID, err := strconv.Atoi(id)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error": "Invalid ID",
+		})
+		return
+	}
+
+	var movie models.Movie
+
+	result := config.DB.First(&movie, movieID)
+
+	if result.Error != nil {
+		c.JSON(http.StatusNotFound, gin.H{
+			"message": "Movie not found",
+		})
+		return
+	}
+
+	config.DB.Delete(&movie)
+
+	c.JSON(http.StatusOK, gin.H{
+		"message": "Movie deleted successfully",
+		// "data":    movie,
+	})
+}
+
+func UpdateMovieByID(c *gin.Context) {
+	id := c.Param("id")
+
+	var movie models.Movie
+
+
+	// 1. Find existing movie
+	result := config.DB.First(&movie, id)
+
+	if result.Error != nil {
+		c.JSON(http.StatusNotFound, gin.H{
+			"message": "Movie not found",
+		})
+		return
+	}
+
+	// 2. Create a struct to hold incoming data
+	var updatedData models.Movie
+
+	// 3. Read JSON from request body
+	if err := c.ShouldBindJSON(&updatedData); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error": err.Error(),
+		})
+		return
+	}
+
+	// 4. Update fields
+	movie.Title = updatedData.Title
+	movie.Year = updatedData.Year
+	movie.Genre = updatedData.Genre
+	movie.Rating = updatedData.Rating
+
+	// 5. Save to database
+	config.DB.Save(&movie)
+
+	// 6. Return updated movie
+	c.JSON(http.StatusOK, gin.H{
+		"message": "Movie updated successfully",
+		"data":    movie,
+	})
+}

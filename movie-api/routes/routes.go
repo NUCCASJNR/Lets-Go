@@ -9,9 +9,14 @@ import (
 func SetupRouter() *gin.Engine {
 	r := gin.Default()
 
-	r.GET("/movies", controllers.GetMovies)
-	r.POST("/movies/add", controllers.CreateMovie)
-	r.GET("/movies/:id", controllers.GetMovieByID)
+	movies := r.Group("/movies")
+	{
+		movies.GET("", controllers.GetMovies)
+		movies.POST("/add", controllers.CreateMovie)
+		movies.GET("/:id", controllers.GetMovieByID)
+		movies.DELETE("/:id", controllers.DeleteMovieByID)
+		movies.PUT("/:id", controllers.UpdateMovieByID)
+	}
 
 	return r
 }
