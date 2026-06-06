@@ -10,7 +10,10 @@ func main() {
 	config.ConnectDB()
 
 	// AUTO CREATE TABLE
-	config.DB.AutoMigrate(&models.Movie{})
+	config.DB.AutoMigrate(
+		&models.Movie{},
+		&models.User{},
+	)
 
 	r := routes.SetupRouter()
 	r.Run(":8080")

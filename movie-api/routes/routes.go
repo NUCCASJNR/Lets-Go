@@ -2,7 +2,6 @@ package routes
 
 import (
 	"movie-api/controllers"
-
 	"github.com/gin-gonic/gin"
 )
 
@@ -12,10 +11,16 @@ func SetupRouter() *gin.Engine {
 	movies := r.Group("/movies")
 	{
 		movies.GET("", controllers.GetMovies)
-		movies.POST("/add", controllers.CreateMovie)
+		movies.POST("", controllers.CreateMovie)
 		movies.GET("/:id", controllers.GetMovieByID)
-		movies.DELETE("/:id", controllers.DeleteMovieByID)
 		movies.PUT("/:id", controllers.UpdateMovieByID)
+		movies.DELETE("/:id", controllers.DeleteMovieByID)
+	}
+
+	users := r.Group("/users")
+	{
+		users.POST("/register", controllers.Register)
+		users.POST("/login", controllers.Login)
 	}
 
 	return r
